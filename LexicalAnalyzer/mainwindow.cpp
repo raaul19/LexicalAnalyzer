@@ -31,7 +31,7 @@ void MainWindow::on_analyzeBT_clicked(){
             ui->tokensTableTG->setItem(row,2,new QTableWidgetItem(QString(ite->getLexeme().c_str())));
             row++;
         }
-        //cout << " S I Z E : " << aux.size() << endl;
+        cout << " S I Z E : " << aux.size() << endl;
     }
     else{
         popUp.setText("Ingrese datos para analizar! ");

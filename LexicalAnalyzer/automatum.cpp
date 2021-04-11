@@ -370,6 +370,135 @@ list<Analyzer> Automatum::automata(std::string text){
                         strToken = ""; // new
                         state = 0;
                     }
+                    else if(buffer == ';'){ // SEMICOLON
+                        Analyzer tokenItem1("Identificador",strToken,"1");
+                        tokenList.push_back(tokenItem1);
+                        strToken ="";
+                        strToken += buffer;
+                        Analyzer tokenItem(";",strToken,"2");
+                        tokenList.push_back(tokenItem);
+                        state = START;
+                        strToken = ""; // new
+                    }
+                    else if(buffer == ','){ // COMA
+                        Analyzer tokenItem1("Identificador",strToken,"1");
+                        tokenList.push_back(tokenItem1);
+                        strToken ="";
+                        strToken += buffer;
+                        Analyzer tokenItem(",",strToken,"3");
+                        tokenList.push_back(tokenItem);
+                        state = START;
+                        strToken = ""; // new
+                    }
+                    else if(buffer == '('){// OPEN PARENTHESIS
+                        Analyzer tokenItem1("Identificador",strToken,"1");
+                        tokenList.push_back(tokenItem1);
+                        strToken ="";
+                        strToken += buffer;
+                        Analyzer tokenItem("(",strToken,"4");
+                        tokenList.push_back(tokenItem);
+                        state = START;
+                        strToken = ""; // new
+                    }
+                    else if(buffer == ')'){ // CLOSING PARENTHESIS
+                        Analyzer tokenItem1("Identificador",strToken,"1");
+                        tokenList.push_back(tokenItem1);
+                        strToken ="";
+                        strToken += buffer;
+                        Analyzer tokenItem(")",strToken,"5");
+                        tokenList.push_back(tokenItem);
+                        state = START;
+                        strToken = ""; // new
+                    }
+                    else if(buffer == '{'){ // OPEN BRACKET
+                        Analyzer tokenItem1("Identificador",strToken,"1");
+                        tokenList.push_back(tokenItem1);
+                        strToken ="";
+                        strToken += buffer;
+                        Analyzer tokenItem("{",strToken,"6");
+                        tokenList.push_back(tokenItem);
+                        state = START;
+                        strToken = ""; // new
+                    }
+                    else if(buffer == '}'){ //CLOSING BRACKET
+                        Analyzer tokenItem1("Identificador",strToken,"1");
+                        tokenList.push_back(tokenItem1);
+                        strToken ="";
+                        strToken += buffer;
+                        Analyzer tokenItem("}",strToken,"7");
+                        tokenList.push_back(tokenItem);
+                        state = START;
+                        strToken = ""; // new
+                    }
+                    else if(buffer == '='){
+                        Analyzer tokenItem1("Identificador",strToken,"1");
+                        tokenList.push_back(tokenItem1);
+                        strToken ="";
+                        state = EQUALS;
+                        strToken += buffer;
+                    }
+                    else if(buffer == '$'){ // PESOS SIGN
+                        Analyzer tokenItem1("Identificador",strToken,"1");
+                        tokenList.push_back(tokenItem1);
+                        strToken ="";
+                        strToken += buffer;
+                        Analyzer tokenItem("$",strToken,"18");
+                        tokenList.push_back(tokenItem);
+                        state = START;
+                        strToken = ""; // new
+                    }
+                    else if(buffer == '+' || buffer == '-'){ // ADD SUBSTRACT
+                        Analyzer tokenItem1("Identificador",strToken,"1");
+                        tokenList.push_back(tokenItem1);
+                        strToken ="";
+                        strToken += buffer;
+                        Analyzer tokenItem("OpSuma",strToken,"14");
+                        tokenList.push_back(tokenItem);
+                        state = START;
+                        strToken = ""; // new
+                    }
+                    else if(buffer == '*' || buffer == '/'){ // MULT DIV
+                        Analyzer tokenItem1("Identificador",strToken,"1");
+                        tokenList.push_back(tokenItem1);
+                        strToken ="";
+                        strToken += buffer;
+                        Analyzer tokenItem("OpMultiplicacion",strToken,"16");
+                        tokenList.push_back(tokenItem);
+                        state = START;
+                        strToken = ""; // new
+                    }
+                    else if(buffer == '|' || buffer == '&' ){
+                        Analyzer tokenItem1("Identificador",strToken,"1");
+                        tokenList.push_back(tokenItem1);
+                        strToken ="";
+                        state = LOGIC;
+                        strToken += buffer;
+                    }
+                    else if(buffer == '>' || buffer == '<'){
+                        Analyzer tokenItem1("Identificador",strToken,"1");
+                        tokenList.push_back(tokenItem1);
+                        strToken ="";
+                        state = RELATIONAL;
+                        strToken += buffer;
+                    }
+                    else if(buffer == '!'){
+                        Analyzer tokenItem1("Identificador",strToken,"1");
+                        tokenList.push_back(tokenItem1);
+                        strToken= "";
+                        state = EXCLAMATION;
+                        strToken += buffer;
+                    }
+                    else if(buffer == '@' || buffer == '?' || buffer == '\'' || buffer == '\"'
+                            || buffer == '#' || buffer == '¿' || buffer == '%'){
+                        Analyzer tokenItem1("Identificador",strToken,"1");
+                        tokenList.push_back(tokenItem1);
+                        strToken ="";
+                        state = START;
+                        strToken += buffer;
+                        Analyzer tokenItem("Error",strToken,"-1");
+                        tokenList.push_back(tokenItem);
+                        strToken ="";
+                    }
                     else{
                         Analyzer tokenItem("Identificador",strToken,"1");
                         tokenList.push_back(tokenItem);
@@ -502,6 +631,13 @@ list<Analyzer> Automatum::automata(std::string text){
                     tokenList.push_back(tokenItem);
                     strToken ="";
                     state = RESERVED;
+                    strToken += buffer;
+                }
+                else if(isdigit(buffer)){
+                    Analyzer tokenItem("=",strToken,"8");
+                    tokenList.push_back(tokenItem);
+                    strToken ="";
+                    state = CONSTANTS;
                     strToken += buffer;
                 }
                 else if(buffer == '_'){
