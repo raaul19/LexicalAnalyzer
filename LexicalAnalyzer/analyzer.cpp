@@ -4,10 +4,10 @@ using namespace std;
 
 Analyzer::Analyzer(){}
 
-Analyzer::Analyzer(string token, string lexeme, short num){
-    this->token = token;
-    this->lexeme = lexeme;
-    this->num = num;
+Analyzer::Analyzer(string token, string lexeme, string num){
+    setToken(token);
+    setLexeme(lexeme);
+    setNum(num);
 }
 
 void Analyzer::setToken(string token){
@@ -18,7 +18,7 @@ void Analyzer::setLexeme(string lexeme){
     this->lexeme = lexeme;
 }
 
-void Analyzer::setNum(short num){
+void Analyzer::setNum(string num){
     this->num = num;
 }
 
@@ -30,6 +30,6 @@ string Analyzer::getLexeme(){
     return lexeme;
 }
 
-short Analyzer::getNum(){
+string Analyzer::getNum(){
     return this->num;
 }

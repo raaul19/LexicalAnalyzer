@@ -19,18 +19,19 @@ void MainWindow::on_analyzeBT_clicked(){
     std::list<Analyzer> aux;
     std::string text;
     QMessageBox popUp;
+    int row = 0;
 
     text = ui->textTE->toPlainText().toStdString();
     aux = automatum.automata(text);
     if(!aux.empty()){
        for(std::list<Analyzer>::iterator ite = aux.begin(); ite != aux.end(); ite++){
-           cout << "ID: " << ite->getNum() << endl;
-           cout << "Lexema: " << ite->getLexeme() << endl;
-           cout << "Token: " << ite->getToken() << endl;
-
+            ui->tokensTableTG->insertRow(ui->tokensTableTG->rowCount());
+            ui->tokensTableTG->setItem(row,0,new QTableWidgetItem(QString(ite->getToken().c_str())));
+            ui->tokensTableTG->setItem(row,1,new QTableWidgetItem(QString(ite->getNum().c_str())));
+            ui->tokensTableTG->setItem(row,2,new QTableWidgetItem(QString(ite->getLexeme().c_str())));
+            row++;
         }
-        cout << " S I Z E : " << aux.size() << endl;
-
+        //cout << " S I Z E : " << aux.size() << endl;
     }
     else{
         popUp.setText("Ingrese datos para analizar! ");

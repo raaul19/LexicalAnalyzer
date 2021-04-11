@@ -10,19 +10,19 @@ class Analyzer{
 private:
     std::string token;
     std::string lexeme;
-    short num;
+    std::string num;
 
 public:
     Analyzer();
-    Analyzer(std::string, std::string, short);
+    Analyzer(std::string, std::string, std::string);
 
     void setToken(std::string);
     void setLexeme(std::string);
-    void setNum(short);
+    void setNum(std::string);
 
     std::string getToken();
     std::string getLexeme();
-    short getNum();
+    std::string getNum();
 
 };
 
