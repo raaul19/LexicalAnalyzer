@@ -791,6 +791,8 @@ list<Analyzer> Automatum::automata(std::string text){
                     state = START;
                 }
                 break;
+            case RELATIONAL:
+                break;
             default:
                 cout << "Algo extraño ocurrió..." << endl;
         }
